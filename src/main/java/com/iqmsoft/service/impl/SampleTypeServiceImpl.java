@@ -8,37 +8,42 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.iqmsoft.domain.Sample;
+import com.iqmsoft.domain.SampleType;
 import com.iqmsoft.repository.SampleRepository;
+import com.iqmsoft.repository.SampleTypeRepository;
 import com.iqmsoft.service.SampleService;
+import com.iqmsoft.service.SampleTypeService;
 
 @Service
 @Transactional
-public class SampleServiceImpl implements SampleService{
+public class SampleTypeServiceImpl implements SampleTypeService {
 
 	@Autowired
-	private SampleRepository toDoRepository;
+	private SampleTypeRepository toDoRepository;
 	
-	@Override
+
 	@Transactional(readOnly = true)
-	public List<Sample> getAllToDo() {
+	@Override
+	public List<SampleType> getAllToDo() {
 		return toDoRepository.findAll();
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public Optional<Sample> getToDoById(Long id) {
+	public Optional<SampleType> getToDoById(Long id) {
 		return toDoRepository.findById(id);
 	}
 
 	@Override
-	public Sample saveToDo(Sample todo) {
+	public SampleType saveToDo(SampleType todo) {
 		return toDoRepository.save(todo);
 	}
 
 	@Override
-	public void deleteToDo(Sample todo) {
+	public void deleteToDo(SampleType todo) {
 		toDoRepository.delete(todo);
 	}
 
 
 }
+

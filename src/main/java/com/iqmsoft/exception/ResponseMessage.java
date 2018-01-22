@@ -1,6 +1,7 @@
 package com.iqmsoft.exception;
 
 public class ResponseMessage {
+	
 	private String message;
 	private int errorCode;
 

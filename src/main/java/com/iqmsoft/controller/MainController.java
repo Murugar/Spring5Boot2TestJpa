@@ -27,6 +27,14 @@ public class MainController {
 	
 	@Autowired
 	private SampleService todoService;
+	
+	
+	@GetMapping("/")
+	public ResponseEntity<List<Sample>> getInit(){
+		logger.info("Returning all todo list");
+		return new ResponseEntity<List<Sample>>(todoService.getAllToDo(),HttpStatus.OK);
+	}
+	
 	@GetMapping("/all")
 	public ResponseEntity<List<Sample>> getAllToDo(){
 		logger.info("Returning all todo list");
@@ -38,6 +46,7 @@ public class MainController {
 		logger.info("Getting todo with id "+id);
 		
 		Optional<Sample> todo = todoService.getToDoById(id);
+		
 		if(!todo.isPresent()) {
 			throw new SampleException("Todo not found");
 		}

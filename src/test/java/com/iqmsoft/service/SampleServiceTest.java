@@ -18,21 +18,45 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.iqmsoft.domain.Sample;
+import com.iqmsoft.domain.SampleType;
 import com.iqmsoft.repository.SampleRepository;
+import com.iqmsoft.repository.SampleTypeRepository;
 import com.iqmsoft.service.impl.SampleServiceImpl;
+import com.iqmsoft.service.impl.SampleTypeServiceImpl;
 
 @RunWith(SpringRunner.class)
 public class SampleServiceTest {
 	@Mock
 	private SampleRepository toDoRepository;
 	
+	@Mock
+	private SampleTypeRepository samRepository;
+	
 	@InjectMocks
 	private SampleServiceImpl toDoServiceImpl;
+	
+	@InjectMocks
+	private SampleTypeServiceImpl typeServiceImpl;
 	
 	@Before
 	public void setup() {
 		MockitoAnnotations.initMocks(this);
 	}
+	
+	
+	@Test
+	public void getAllTypeTest() {
+		List<SampleType> list = new ArrayList<>();
+		list.add(new SampleType("list id 10"));
+		list.add(new SampleType("list id 11"));
+		
+		when(samRepository.findAll()).thenReturn(list);
+		
+		List<SampleType> result = typeServiceImpl.getAllToDo();
+		assertEquals(result, list);
+	}
+	
+	
 	
 	@Test
 	public void getAllTodoTest() {

@@ -4,12 +4,31 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Sample {
+	
+	@Override
+	public String toString() {
+		return "Sample [id=" + id + ", text=" + text + ", completed=" + completed + ", value=" + value + "]";
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
+	
+	@ManyToOne
+	private SampleType type;
+
+	public SampleType getType() {
+		return type;
+	}
+
+	public void setType(SampleType type) {
+		this.type = type;
+	}
 
 	private String text;
 	private boolean completed;
@@ -43,6 +62,23 @@ public class Sample {
 		this.text = text;
 		this.completed = completed;
 		this.value = value;
+	}
+	
+    public Sample(Long id, String text, boolean completed, int value, SampleType type) {
+		
+    	this.id = id;
+		this.text = text;
+		this.completed = completed;
+		this.value = value;
+		this.type = type;
+	}
+	
+	public Sample(String text, boolean completed, int value, SampleType type) {
+		
+		this.text = text;
+		this.completed = completed;
+		this.value = value;
+		this.type = type;
 	}
 	
 	

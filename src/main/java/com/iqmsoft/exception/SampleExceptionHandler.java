@@ -20,9 +20,7 @@ public class SampleExceptionHandler {
 		return new ResponseEntity<ResponseMessage>(rm,HttpStatus.NOT_FOUND);
 	}
 	
-	/*
-	 * Throw this exception for Pathvariable with invalid requests except id
-	 */
+	
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<ResponseMessage> exceptionHandler(Exception ex){
 		ResponseMessage rm = new ResponseMessage();
